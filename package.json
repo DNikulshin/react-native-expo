@@ -3,7 +3,10 @@
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start --tunnel",
+    "start": "expo start",
+    "start-cache": "expo start -c",
+    "start-tunnel": "expo start --tunnel",
+    "start-tunnel-cache": "expo start --tunnel -c",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
