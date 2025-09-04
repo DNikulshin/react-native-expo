@@ -6,6 +6,9 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Get started
 
+### metro.config 
+npx expo customize metro.config.js
+
 #### Android
 
 Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
@@ -15,6 +18,9 @@ Note, if you can't find the task, either:
 - Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
 
 In the output of this command/task, you'll find options to open the app in a
+
+### build preview apk
+eas build --platform android --profile preview
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
