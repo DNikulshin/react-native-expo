@@ -1,59 +1,81 @@
-> Edited for use in IDX on 07/09/12
+# Project Structure
 
-# Welcome to your Expo app 👋
+This document outlines the file structure for our React Native Expo application.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Directory Structure
 
-## Get started
+```
+app/                    # Application screens and routing
+├── (tabs)/            # Tab-based navigation structure
+│   ├── _layout.tsx    # Tab navigator layout
+│   ├── home/          # Home tab screens
+│   ├── settings/      # Settings tab screens
+│   └── profile/       # Profile tab screens
+├── _layout.tsx        # Root layout
+└── index.tsx          # Entry point
 
-### metro.config 
-npx expo customize metro.config.js
+components/            # Reusable UI components
+├── ui/               # Basic UI components (Button, Card, etc.)
+├── layout/           # Layout components (Header, Footer, etc.)
+└── shared/           # Shared components
 
-#### Android
+lib/                   # Core application logic
+├── hooks/            # Custom React hooks
+├── utils/            # Utility functions
+├── services/         # API services and business logic
+└── types/            # TypeScript types
 
-Android previews are defined as a `workspace.onStart` hook and started as a vscode task when the workspace is opened/started.
+assets/                # Static assets
+├── images/           # Image files
+├── icons/            # Icon files
+└── fonts/            # Custom fonts
 
-Note, if you can't find the task, either:
-- Rebuild the environment (using command palette: `IDX: Rebuild Environment`), or
-- Run `npm run android -- --tunnel` command manually run android and see the output in your terminal. The device should pick up this new command and switch to start displaying the output from it.
+stores/                # State management (if using Redux/Zustand)
 
-In the output of this command/task, you'll find options to open the app in a
+styles/                # Styling related files
+├── globals.css       # Global styles
+└── themes/           # Theme configurations
 
-### build preview apk
-eas build --platform android --profile preview
+constants/             # Application constants
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You'll also find options to open the app's developer menu, reload the app, and more.
-
-#### Web
-
-Web previews will be started and managred automatically. Use the toolbar to manually refresh.
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+features/              # Feature-based modules
+├── auth/             # Authentication feature
+│   ├── components/   # Auth-specific components
+│   ├── hooks/        # Auth-specific hooks
+│   ├── services/     # Auth-specific services
+│   └── types/        # Auth-specific types
+└── user/             # User feature
+    ├── components/
+    ├── hooks/
+    ├── services/
+    └── types/
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Key Principles
 
-## Learn more
+1. **Separation of Concerns**: Each directory has a specific purpose
+2. **Feature-based Organization**: Related functionality is grouped together
+3. **Scalability**: Structure supports growth without major refactoring
+4. **Reusability**: Components and utilities are designed for reuse
+5. **Maintainability**: Clear organization makes it easy to locate and modify code
 
-To learn more about developing your project with Expo, look at the following resources:
+## Naming Conventions
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Directories: lowercase with hyphens (e.g., `user-profile`)
+- Files: PascalCase for components (e.g., `UserProfile.tsx`)
+- Utilities: camelCase (e.g., `formatDate.ts`)
+- Constants: UPPER_SNAKE_CASE (e.g., `API_ENDPOINTS.ts`)
 
-## Join the community
+## Routing
 
-Join our community of developers creating universal apps.
+We're using Expo Router with a tab-based navigation pattern:
+- Tab routes are placed in `app/(tabs)/[tab-name]/`
+- Each tab has its own directory with an `index.tsx` file
+- The root `app/index.tsx` redirects to the default tab
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Styling
+
+We're using NativeWind (Tailwind CSS for React Native) for styling:
+- Global styles are defined in `styles/globals.css`
+- Component-specific styles use Tailwind classes
+- Theme-specific values can be defined in `styles/themes/`
